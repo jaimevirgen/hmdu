@@ -4,7 +4,7 @@
 Shell Utility in Bash to keep track of Calendar Events
 
 ***
-Some exampled of commands
+Some sample commands
 
 ```bash
 # list 'birthday' event countdown
