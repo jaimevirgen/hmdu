@@ -6,7 +6,7 @@ Shell Utility in Bash to keep track of Calendar Events
 ***
 Some exampled of commands
 
-```
+```bash
 # list 'birthday' event countdown
 hmdu birthday
 
