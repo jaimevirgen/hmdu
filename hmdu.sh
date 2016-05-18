@@ -2,10 +2,10 @@
 
 # Main thread for countdown logic
 main() {
-	add_cal_event
+	greeting
 }
 
-add_cal_event() {
+greeting() {
 
 	echo "How many days until…"
 
