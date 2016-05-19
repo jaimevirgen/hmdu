@@ -7,7 +7,11 @@ main() {
 
 greeting() {
 
-	echo "How many days until…"
+	red=`tput setaf 1`
+	green=`tput setaf 2`
+	reset=`tput sgr0`
+
+	echo $'\n' There are ${green}$(( ($(gdate --date="160922" +%s) - $(gdate +%s) )/(60*60*24) ))${reset} Days Left $'\n'
 
 }
 
