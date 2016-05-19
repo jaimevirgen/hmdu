@@ -20,7 +20,19 @@ read_list() {
 
 	while IFS=, read -r name event; do
 		count=$(( ($(gdate --date="$event" +%s) - $(gdate +%s) )/(60*60*24) ))
-		echo "$name" "$count"
+		reset=`tput sgr0`
+
+		if [ $count -lt 30 ]; then
+			color=`tput setaf 1`
+		elif [ $count -lt 60 ]; then
+			color=`tput setaf 3`
+		elif [ $count -lt 100 ]; then
+			color=`tput setaf 6`
+		else
+			color=`tput setaf 2`
+		fi
+
+		echo "$name" ${color} "$count" ${reset}
 	done <$file
 }
 
