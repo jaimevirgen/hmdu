@@ -3,6 +3,7 @@
 # Main thread for countdown logic
 main() {
 	greeting
+	read_list
 }
 
 greeting() {
@@ -13,6 +14,14 @@ greeting() {
 
 	echo $'\n' There are ${green}$(( ($(gdate --date="160922" +%s) - $(gdate +%s) )/(60*60*24) ))${reset} Days Left $'\n'
 
+}
+
+read_list() {
+	file="/Users/jaimev/countdown.txt"
+	for line in $(cat $file)
+	do
+		echo $line
+	done
 }
 
 while getopts "a:d:l" opt;
