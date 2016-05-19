@@ -1,18 +1,29 @@
 #!/bin/bash
 
+#store all arguments passed in special array
+args=("$@")
+
 # Main thread for countdown logic
 main() {
-	greeting
-	read_list
+	lookupdate
 }
 
-greeting() {
+lookupdate() {
 
-	red=`tput setaf 1`
-	green=`tput setaf 2`
+	count=$(( ($(gdate --date="20161225" +%s) - $(gdate +%s) )/(60*60*24) ))
 	reset=`tput sgr0`
 
-	#echo $'\n' There are ${green}$(( ($(gdate --date="160922" +%s) - $(gdate +%s) )/(60*60*24) ))${reset} Days Left $'\n'
+	if [ $count -lt 30 ]; then
+		color=`tput setaf 1`
+	elif [ $count -lt 60 ]; then
+		color=`tput setaf 3`
+	elif [ $count -lt 100 ]; then
+		color=`tput setaf 6`
+	else
+		color=`tput setaf 2`
+	fi
+
+	echo " There are ${color}${count}${reset} Days until ${args} "
 }
 
 read_list() {
@@ -46,7 +57,8 @@ do
       echo "-d was triggered, Parameter: $OPTARG" >&2
       ;;
     l)
-      echo "-l was triggered, Parameter: $OPTARG" >&2
+	  read_list
+	  exit 1
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -59,4 +71,11 @@ do
   esac
 done
 
+# catch if no flag or parameter is passed
+if [ $# -eq 0 ]; then
+    echo "How many days until...what?"
+    exit 1
+fi
+
+# if an argument is passed call main
 main
