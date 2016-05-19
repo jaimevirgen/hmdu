@@ -12,16 +12,16 @@ greeting() {
 	green=`tput setaf 2`
 	reset=`tput sgr0`
 
-	echo $'\n' There are ${green}$(( ($(gdate --date="160922" +%s) - $(gdate +%s) )/(60*60*24) ))${reset} Days Left $'\n'
-
+	#echo $'\n' There are ${green}$(( ($(gdate --date="160922" +%s) - $(gdate +%s) )/(60*60*24) ))${reset} Days Left $'\n'
 }
 
 read_list() {
 	file="/Users/jaimev/countdown.txt"
-	for line in $(cat $file)
-	do
-		echo $line
-	done
+
+	while IFS=, read -r name event; do
+		count=$(( ($(gdate --date="$event" +%s) - $(gdate +%s) )/(60*60*24) ))
+		echo "$name" "$count"
+	done <$file
 }
 
 while getopts "a:d:l" opt;
