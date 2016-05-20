@@ -1,14 +1,36 @@
 #!/bin/bash
 
-#store all arguments passed in special array
+# ##################################################
+#
+version="0.1.0"              # Sets version variable
+#
+# HISTORY:
+#
+# * DATE - v0.1.0  - Main Template with Colors defined and options
+#
+# ##################################################
+
+## Store all arguments passed in special array
 args=("$@")
 
-# Main thread for countdown logic
 main() {
-	lookupdate
+
+	# Main thread for countdown logic
+	# -----------------------------------
+	# Perform regardless of any option or parameter used.
+	# this will also run trap and CLI overhead.
+	# -----------------------------------
+
+	lookup_event
 }
 
-lookupdate() {
+lookup_event() {
+
+	# lookup_event function
+	# -----------------------------------
+	# Iterate through event parameter name lookup through full event List.
+	# Define colors, and embed day countdown into message.
+	# -----------------------------------
 
 	count=$(( ($(gdate --date="20161225" +%s) - $(gdate +%s) )/(60*60*24) ))
 	reset=`tput sgr0`
@@ -27,6 +49,13 @@ lookupdate() {
 }
 
 read_list() {
+
+	# read_list function
+	# -----------------------------------
+	# Iterate through full event List and Echo each in seperate lines.
+	# Define colors, and embed day countdown into each event.
+	# -----------------------------------
+
 	file="/Users/jaimev/countdown.txt"
 
 	while IFS=, read -r name event; do
