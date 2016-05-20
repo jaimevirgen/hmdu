@@ -10,7 +10,7 @@ version="0.1.0"              # Sets version variable
 #
 # ##################################################
 
-## Store all arguments passed in special array
+# Store all arguments passed in special array
 args=("$@")
 
 main() {
@@ -76,6 +76,10 @@ read_list() {
 	done <$file
 }
 
+# Set Flags
+# -----------------------------------
+# Flags which can be overridden by user input.
+# -----------------------------------
 while getopts "a:d:l" opt;
 do
   case $opt in
@@ -106,5 +110,5 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-# if an argument is passed call main
+# always call main regardless of flag or parameter
 main
