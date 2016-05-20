@@ -32,20 +32,27 @@ lookup_event() {
 	# Define colors, and embed day countdown into message.
 	# -----------------------------------
 
-	count=$(( ($(gdate --date="20161225" +%s) - $(gdate +%s) )/(60*60*24) ))
-	reset=`tput sgr0`
+	file="/Users/jaimev/countdown.txt"
 
-	if [ $count -lt 30 ]; then
-		color=`tput setaf 1`
-	elif [ $count -lt 60 ]; then
-		color=`tput setaf 3`
-	elif [ $count -lt 100 ]; then
-		color=`tput setaf 6`
-	else
-		color=`tput setaf 2`
-	fi
+	while IFS=, read -r name event; do
+		if [ "$name" = "$args" ]; then
+			count=$(( ($(gdate --date="$event" +%s) - $(gdate +%s) )/(60*60*24) ))
+			reset=`tput sgr0`
 
-	echo " There are ${color}${count}${reset} Days until ${args} "
+			if [ $count -lt 30 ]; then
+				color=`tput setaf 1`
+			elif [ $count -lt 60 ]; then
+				color=`tput setaf 3`
+			elif [ $count -lt 100 ]; then
+				color=`tput setaf 6`
+			else
+				color=`tput setaf 2`
+			fi
+
+			echo " There are ${color}${count}${reset} Days until ${args} "
+		fi
+	done <$file
+
 }
 
 read_list() {
