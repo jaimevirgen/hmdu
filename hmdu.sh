@@ -2,7 +2,7 @@
 
 # ##################################################
 #
-version="0.1.0"              # Sets version variable
+version="0.1.1"              # Sets version variable
 #
 # HISTORY:
 #
@@ -63,7 +63,9 @@ read_list() {
 	# Define colors, and embed day countdown into each event.
 	# -----------------------------------
 
-	file="/Users/jaimev/countdown.txt"
+	sort -t"," -k2,2 "/Users/jaimev/countdown.txt" > "/Users/jaimev/countdown.temp"
+
+	file="/Users/jaimev/countdown.temp"
 
 	while IFS=, read -r name event; do
 		count=$(( ($(gdate --date="$event" +%s) - $(gdate +%s) )/(60*60*24) ))
@@ -81,6 +83,8 @@ read_list() {
 
 		echo "$name" ${color} "$count" ${reset}
 	done <$file
+
+	rm "/Users/jaimev/countdown.temp"
 }
 
 # Set Flags
