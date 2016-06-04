@@ -87,6 +87,33 @@ read_list() {
 	rm "/Users/jaimev/countdown.temp"
 }
 
+add_to_list() {
+
+	# add_to_list function
+	# -----------------------------------
+	# Add event to countdown list with passed parameters, name date.
+	# Validate arguments passed or return error message.
+	# -----------------------------------
+
+	echo ${args[1]},${args[2]} >> "/Users/jaimev/countdown.txt"
+	sed -i '' -n p "/Users/jaimev/countdown.txt"
+
+}
+
+remove_from_list() {
+
+	# add_to_list function
+	# -----------------------------------
+	# Add event to countdown list with passed parameters, name date.
+	# Validate arguments passed or return error message.
+	# -----------------------------------
+
+	sed "/${args[1]}/d" "/Users/jaimev/countdown.txt" > "/Users/jaimev/countdown.temp" ; mv "/Users/jaimev/countdown.temp" "/Users/jaimev/countdown.txt"
+
+	echo "deleted " ${args[1]}
+
+}
+
 # Set Flags
 # -----------------------------------
 # Flags which can be overridden by user input.
@@ -95,10 +122,12 @@ while getopts "a:d:l" opt;
 do
   case $opt in
     a)
-      echo "-a was triggered, Parameter: $OPTARG" >&2
+      args=("$@")
+      add_to_list
       ;;
     d)
-      echo "-d was triggered, Parameter: $OPTARG" >&2
+      args=("$@")
+      remove_from_list
       ;;
     l)
 	  read_list
