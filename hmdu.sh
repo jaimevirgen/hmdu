@@ -98,6 +98,7 @@ add_to_list() {
 	echo ${args[1]},${args[2]} >> "/Users/jaimev/countdown.txt"
 	sed -i '' -n p "/Users/jaimev/countdown.txt"
 
+	echo "added " ${args[1]}
 }
 
 remove_from_list() {
@@ -129,10 +130,6 @@ do
       args=("$@")
       remove_from_list
       ;;
-    l)
-	  read_list
-	  exit 1
-      ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       exit 1
@@ -146,7 +143,7 @@ done
 
 # catch if no flag or parameter is passed
 if [ $# -eq 0 ]; then
-    echo "How many days until...what?"
+    read_list
     exit 1
 fi
 
