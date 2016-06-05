@@ -10,9 +10,6 @@ Some sample commands
 # list 'birthday' event countdown
 hmdu birthday
 
-# list upcoming event list
-hmdu -l
-
 # add new event
 hmdu -a christmas 20161225
 
