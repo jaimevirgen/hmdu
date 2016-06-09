@@ -11,7 +11,7 @@ Some sample commands
 hmdu birthday
 
 # add new event
-hmdu -a christmas 20161225
+hmdu -a christmas,20161225
 
 # delete event
 hmdu -d christmas
