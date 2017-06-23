@@ -1,17 +1,36 @@
 # hmdu
-##### how many days until ...
-***
+### how many days until ...
+
 Shell Utility in Bash to keep track of Calendar Events
 
-***
-Some sample commands
+## Installation
 
+### Dependencies
+GNU Core Utils
+```
+brew install coreutils
+```
+
+### Add to script directory's path to your .bash_profile
 ```bash
-# list 'birthday' event countdown
-hmdu birthday
+export PATH=$PATH:path/to/script
+```
+
+### Add countdown.txt to root for event registry
+```bash
+touch ~/countdown.txt
+```
+
+## HMDU
+```bash
+# will return all events
+hmdu 
 
 # add new event
 hmdu -a christmas,20161225
+
+# list 'christmas' event countdown
+hmdu christmas
 
 # delete event
 hmdu -d christmas
