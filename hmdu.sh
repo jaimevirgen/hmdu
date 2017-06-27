@@ -15,6 +15,10 @@ args=("$@")
 #main_lookup no options just single argument
 function main_lookup {
 
+    if [ ! -f /Users/jvirgen/countdown.txt ]; then
+        echo "Countdown File not found!"
+    fi
+
     file="/Users/jvirgen/countdown.txt"
 
     while IFS=, read -r name event; do
