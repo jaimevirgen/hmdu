@@ -16,7 +16,8 @@ args=("$@")
 function main_lookup {
 
     if [ ! -f /Users/jvirgen/countdown.txt ]; then
-        echo "Countdown File not found!"
+        echo "Countdown File newly created"
+        touch /Users/jvirgen/countdown.txt
     fi
 
     file="/Users/jvirgen/countdown.txt"
@@ -45,6 +46,11 @@ function main_lookup {
 #add event function
 function add_event {
 
+  if [ ! -f /Users/jvirgen/countdown.txt ]; then
+      echo "Countdown File newly created"
+      touch /Users/jvirgen/countdown.txt
+  fi
+
   echo $OPTARG >> "/Users/jvirgen/countdown.txt"
   sed -i '' -n p "/Users/jvirgen/countdown.txt"
   echo "added " ${args[1]}
@@ -63,6 +69,11 @@ function delete_event {
 
 #lookup event function
 function list_events {
+
+  if [ ! -f /Users/jvirgen/countdown.txt ]; then
+      echo "Countdown File newly created"
+      touch /Users/jvirgen/countdown.txt
+  fi
 
   sort -t"," -k2,2 "/Users/jvirgen/countdown.txt" > "/Users/jvirgen/countdown.temp"
 
