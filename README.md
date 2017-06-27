@@ -16,10 +16,6 @@ brew install coreutils
 export PATH=$PATH:path/to/script
 ```
 
-### Add countdown.txt to root for event registry
-```bash
-touch ~/countdown.txt
-```
 
 ## HMDU
 ```bash
