@@ -37,7 +37,11 @@ function main_lookup {
                 color=`tput setaf 2`
             fi
 
-            echo "There are ${color}${count}${reset} Days until ${args}"
+            if [ $count -lt 0 ]; then
+                echo "${color}${count#-}${reset} Days have passed since ${args}"
+            else
+                echo "There are ${color}${count}${reset} Days until ${args}"
+            fi
         fi
     done <$file
 
