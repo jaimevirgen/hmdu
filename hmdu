@@ -14,12 +14,12 @@ args=("$@")
 #main_lookup no options just single argument
 function main_lookup {
 
-    if [ ! -f /Users/jvirgen/countdown.txt ]; then
+    if [ ! -f /Users/jaimevirgen/countdown.txt ]; then
         echo "Countdown File newly created"
-        touch /Users/jvirgen/countdown.txt
+        touch /Users/jaimevirgen/countdown.txt
     fi
 
-    file="/Users/jvirgen/countdown.txt"
+    file="/Users/jaimevirgen/countdown.txt"
 
     while IFS=, read -r name event; do
         if [ "$name" = ${args[0]} ]; then
@@ -49,13 +49,13 @@ function main_lookup {
 #add event function
 function add_event {
 
-  if [ ! -f /Users/jvirgen/countdown.txt ]; then
+  if [ ! -f /Users/jaimevirgen/countdown.txt ]; then
       echo "Countdown File newly created"
-      touch /Users/jvirgen/countdown.txt
+      touch /Users/jaimevirgen/countdown.txt
   fi
 
-  echo $OPTARG >> "/Users/jvirgen/countdown.txt"
-  sed -i '' -n p "/Users/jvirgen/countdown.txt"
+  echo $OPTARG >> "/Users/jaimevirgen/countdown.txt"
+  sed -i '' -n p "/Users/jaimevirgen/countdown.txt"
   echo "added " ${args[1]}
 
   exit 1
@@ -64,7 +64,7 @@ function add_event {
 #delete event function
 function delete_event {
 
-  sed "/$OPTARG/d" "/Users/jvirgen/countdown.txt" > "/Users/jvirgen/countdown.temp" ; mv "/Users/jvirgen/countdown.temp" "/Users/jvirgen/countdown.txt"
+  sed "/$OPTARG/d" "/Users/jaimevirgen/countdown.txt" > "/Users/jaimevirgen/countdown.temp" ; mv "/Users/jaimevirgen/countdown.temp" "/Users/jaimevirgen/countdown.txt"
   echo "deleted " $OPTARG
 
   exit 1
@@ -73,14 +73,14 @@ function delete_event {
 #lookup event function
 function list_events {
 
-  if [ ! -f /Users/jvirgen/countdown.txt ]; then
+  if [ ! -f /Users/jaimevirgen/countdown.txt ]; then
       echo "Countdown File newly created"
-      touch /Users/jvirgen/countdown.txt
+      touch /Users/jaimevirgen/countdown.txt
   fi
 
-  sort -t"," -k2,2 "/Users/jvirgen/countdown.txt" > "/Users/jvirgen/countdown.temp"
+  sort -t"," -k2,2 "/Users/jaimevirgen/countdown.txt" > "/Users/jaimevirgen/countdown.temp"
 
-  file="/Users/jvirgen/countdown.temp"
+  file="/Users/jaimevirgen/countdown.temp"
 
   while IFS=, read -r name event; do
     count=$(( ($(gdate --date="$event" +%s) - $(gdate +%s) )/(60*60*24) ))
@@ -99,7 +99,7 @@ function list_events {
     echo "$name" ${color} "$count" ${reset}
   done <$file
 
-  rm "/Users/jvirgen/countdown.temp"
+  rm "/Users/jaimevirgen/countdown.temp"
 
   exit 1
 }
