@@ -50,13 +50,13 @@ function main_lookup {
 function add_event {
 
   if [ ! -f /Users/jaimevirgen/countdown.txt ]; then
-      echo "Countdown File newly created"
+      echo "`tput setaf 6`Countdown File newly created`tput sgr0`"
       touch /Users/jaimevirgen/countdown.txt
   fi
 
   echo $OPTARG >> "/Users/jaimevirgen/countdown.txt"
   sed -i '' -n p "/Users/jaimevirgen/countdown.txt"
-  echo "added " ${args[1]}
+  echo "`tput setaf 6` added  ${args[1]} `tput sgr0` "
 
   exit 1
 }
@@ -96,7 +96,7 @@ function list_events {
         color=`tput setaf 2`
     fi
 
-    echo "$name" ${color} "$count" ${reset}
+    echo ${color} "$name"  "$count" ${reset}
   done <$file
 
   rm "/Users/jaimevirgen/countdown.temp"
